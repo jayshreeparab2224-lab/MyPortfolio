@@ -1,3 +1,6 @@
+html {
+    scroll-behavior: smooth;
+}
 
 /* Basic Settings */
 * {
@@ -7,7 +10,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-color: #f4f7fc;
     color: #333;
     line-height: 1.6;
@@ -21,6 +24,10 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 nav h2 {
@@ -36,11 +43,15 @@ nav ul {
 nav ul li a {
     color: white;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 8px 12px;
+    transition: 0.3s ease;
 }
 
 nav ul li a:hover {
     color: #00b4d8;
+    border-bottom: 2px solid #00b4d8;
 }
 
 /* All Sections */
@@ -139,17 +150,20 @@ section h2 {
 
 .project-card {
     background-color: white;
-    max-width: 600px;
+    max-width: 650px;
     margin: 20px auto;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+    border: 1px solid #dbeafe;
+    transition: all 0.3s ease;
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-7px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
+
 
 .project-card h3 {
     color: #0077b6;
@@ -179,11 +193,18 @@ section h2 {
 
 .internship-card {
     background-color: white;
-    max-width: 600px;
+    max-width: 650px;
     margin: auto;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+    border: 1px solid #dbeafe;
+    transition: all 0.3s ease;
+}
+
+.internship-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .internship-card h3 {
@@ -210,11 +231,17 @@ section h2 {
 
 .contact-card {
     background-color: white;
-    max-width: 600px;
+    max-width: 650px;
     margin: auto;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+    border: 1px solid #dbeafe;
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
 }
 
 .contact-card p {
@@ -241,4 +268,146 @@ section h2 {
 
 #contact a {
     display: inline-block;
+}
+/* Skills Section - CSS Grid */
+#skills {
+    background-color: #f4f7fc;
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.skill-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+}
+
+.skill-card h3 {
+    color: #0077b6;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.skill-card p {
+    font-size: 15px;
+    line-height: 1.8;
+    font-weight: normal;
+}
+/* Tablet Responsive */
+@media (max-width: 992px) {
+    .skills-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    nav {
+        padding: 18px 5%;
+    }
+
+    section {
+        padding: 55px 7%;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .skills-container {
+        grid-template-columns: 1fr;
+    }
+
+    nav ul {
+        gap: 10px;
+    }
+
+    nav ul li a {
+        font-size: 13px;
+        padding: 6px;
+    }
+
+    #home h1 {
+        font-size: 26px;
+    }
+
+    section h2 {
+        font-size: 25px;
+    }
+}
+/* Home Buttons */
+.home-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #00b4d8;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0077b6;
+    transform: translateY(-3px);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid #00b4d8;
+    color: #00b4d8;
+}
+
+.btn-outline:hover {
+    background-color: #00b4d8;
+    color: white;
+}
+/* Section Layout Improvement */
+section {
+    scroll-margin-top: 85px;
+}
+
+section h2 {
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+/* Better Text Readability */
+section p {
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* Icons Styling */
+section h2 i,
+.skill-card h3 i,
+.project-card h3 i,
+#contact i {
+    color: #00b4d8;
+    margin-right: 8px;
+}
+
+/* Button Icons */
+.btn i {
+    margin-right: 8px;
+}
+
+/* Heading Styling */
+h1, h2, h3, h4 {
+    font-family: 'Poppins', sans-serif;
 }
