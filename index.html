@@ -1,234 +1,92 @@
 
-<!DOCTYPE html>
-<html lang="en">
+// Mobile Navigation Menu
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+const menuToggle = document.getElementById("menu-toggle");
+const navMenu = document.getElementById("nav-menu");
 
-    <title>Jayshree Parab | Portfolio</title>
+menuToggle.addEventListener("click", function () {
+    navMenu.classList.toggle("active");
+});
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+// Close menu after clicking a navigation link
 
-    <!-- CSS File -->
-    <link rel="stylesheet" href="style.css">
+const navLinks = document.querySelectorAll("#nav-menu a");
 
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-</head>
+navLinks.forEach(function (link) {
+    link.addEventListener("click", function () {
+        navMenu.classList.remove("active");
+    });
+});
 
-<body>
+// Dark and Light Mode Toggle
 
-    <!-- Navigation -->
-    <nav>
-        <h2>Jayshree.</h2>
+const themeToggle = document.getElementById("theme-toggle");
 
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#internship">Internship</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+themeToggle.addEventListener("click", function () {
+    document.body.classList.toggle("dark-mode");
 
-    <!-- Home Section -->
-    <section id="home">
+    if (document.body.classList.contains("dark-mode")) {
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    } else {
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    }
+});
 
-        <h1>Hello, I'm Jayshree Parab</h1>
+// Scroll Reveal Animation
 
-        <h3>BSc IT Student | Aspiring Web Developer</h3>
+const revealElements = document.querySelectorAll(
+    "section, .skill-card, .project-card, .internship-card, .contact-card"
+);
 
-        <p>Welcome to my personal portfolio website.</p>
+revealElements.forEach(function (element) {
+    element.classList.add("reveal");
+});
 
-        <img src="profile.png"
-             alt="Jayshree Profile Photo"
-             class="profile-img">
+const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            observer.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.15
+});
 
-        <div class="home-buttons">
+revealElements.forEach(function (element) {
+    observer.observe(element);
+});
 
-            <a href="#projects" class="btn">
-                <i class="fas fa-folder-open"></i>
-                View My Projects
-            </a>
+// Contact Form Validation
 
-            <a href="#contact" class="btn btn-outline">
-                <i class="fas fa-envelope"></i>
-                Contact Me
-            </a>
+const contactForm = document.getElementById("contact-form");
+const formStatus = document.getElementById("form-status");
 
-        </div>
+contactForm.addEventListener("submit", function (event) {
 
-    </section>
+    event.preventDefault();
 
-    <!-- About Section -->
-    <section id="about">
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim().toLowerCase();
+    const message = document.getElementById("message").value.trim();
 
-        <h2><i class="fas fa-user"></i> About Me</h2>
+    if (name === "" || email === "" || message === "") {
+        formStatus.textContent = "Please fill in all fields.";
+        formStatus.style.color = "red";
+        return;
+    }
 
-        <p>
-            Hello! I am Jayshree Parab, a Third Year
-            B.Sc. Information Technology student at
-            the University of Mumbai.
-        </p>
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        <p>
-            I am an aspiring Software Developer
-            interested in Web Development, Programming
-            and Emerging Technologies. I enjoy learning
-            new technologies and developing practical
-            projects.
-        </p>
+    if (!emailPattern.test(email)) {
+        formStatus.textContent = "Please enter a valid email address.";
+        formStatus.style.color = "red";
+        return;
+    }
 
-        <p>
-            I have academic knowledge of HTML, CSS,
-            JavaScript, Python, C#, and SQL.
-            I am continuously working to improve
-            my technical and problem-solving skills.
-        </p>
+    formStatus.textContent = "Your form has been validated successfully!";
+    formStatus.style.color = "green";
 
-        <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+    contactForm.reset();
 
-        <p>B.Sc. Information Technology</p>
-        <p>University of Mumbai | 2024 – 2027</p>
-        <p>Current CGPA: 9.09</p>
-
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-
-        <h2><i class="fas fa-laptop-code"></i> Technical Skills</h2>
-
-        <div class="skills-container">
-
-            <div class="skill-card">
-
-                <h3>
-                    <i class="fas fa-code"></i>
-                    Programming & Web Development
-                </h3>
-
-                <p>
-                    HTML | CSS | JavaScript | C# | Python | SQL | .NET
-                </p>
-
-            </div>
-
-            <div class="skill-card">
-
-                <h3>
-                    <i class="fas fa-desktop"></i>
-                    Operating System
-                </h3>
-
-                <p>Linux</p>
-
-            </div>
-
-            <div class="skill-card">
-
-                <h3>
-                    <i class="fas fa-microchip"></i>
-                    Emerging Technologies
-                </h3>
-
-                <p>
-                    Artificial Intelligence (AI) |
-                    Internet of Things (IoT)
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-
-        <h2><i class="fas fa-folder-open"></i> My Projects</h2>
-
-        <div class="project-card">
-
-            <h3>
-                <i class="fas fa-shield-halved"></i>
-                CyberShield
-            </h3>
-
-            <p>
-                CyberShield is a Phishing, Scam and
-                Fraud Detection Awareness Website.
-                It helps users understand online threats,
-                identify suspicious messages and learn
-                about cyber safety.
-            </p>
-
-            <p>
-                <strong>Technologies:</strong>
-                HTML, CSS, JavaScript, Firebase
-            </p>
-
-        </div>
-
-    </section>
-
-    <!-- Internship Section -->
-    <section id="internship">
-
-        <h2><i class="fas fa-briefcase"></i> Internship Experience</h2>
-
-        <div class="internship-card">
-
-            <h3>Full-stack Development Intern</h3>
-
-            <h4>Cognifyz IT Solutions Pvt. Ltd.</h4>
-
-            <p>November 2026</p>
-
-            <p>
-                Selected for a Full-stack Development
-                Internship to enhance my practical
-                development skills and gain industry
-                experience.
-            </p>
-
-            <p>
-                <strong>Status:</strong> Selected for Internship
-            </p>
-
-        </div>
-
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-
-        <h2><i class="fas fa-address-card"></i> Contact Me</h2>
-
-        <div class="contact-card">
-
-            <p>
-                <i class="fas fa-envelope"></i>
-                <strong>Email:</strong>
-                jayshreeparab2224@gmail.com
-            </p>
-
-            <p>
-                <i class="fab fa-linkedin"></i>
-                <strong>LinkedIn:</strong>
-
-                <a href="https://www.linkedin.com/in/jayshree-parab/"
-                   target="_blank">
-                    Visit My LinkedIn Profile
-                </a>
-            </p>
-
-        </div>
-
-    </section>
-
-</body>
-</html>
+});
