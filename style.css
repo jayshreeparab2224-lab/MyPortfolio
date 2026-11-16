@@ -604,3 +604,64 @@ body.dark-mode #contact-form textarea::placeholder {
 body.dark-mode #contact-form h3 {
     color: #00b4d8;
 }
+
+/* Education Section */
+.education-card {
+    background-color: white;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 12px;
+    max-width: 700px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.education-card:hover {
+    transform: translateY(-5px);
+}
+
+.education-card h3 {
+    color: #14213d;
+    margin-bottom: 8px;
+}
+
+.education-card h4 {
+    margin-bottom: 8px;
+}
+
+.education-card p {
+    margin: 5px 0;
+}
+
+/* Project Buttons */
+.project-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+/* Dark Mode */
+body.dark-mode .education-card {
+    background-color: #252525;
+    color: white;
+}
+
+body.dark-mode .education-card h3 {
+    color: #fca311;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .project-buttons {
+        flex-direction: column;
+    }
+
+    .project-buttons .btn {
+        text-align: center;
+    }
+
+    .education-card {
+        padding: 15px;
+    }
+}
