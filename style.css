@@ -665,3 +665,10 @@ body.dark-mode .education-card h3 {
         padding: 15px;
     }
 }
+
+/* Fix Section Headings in Dark Mode */
+body.dark-mode #projects h2,
+body.dark-mode #internship h2,
+body.dark-mode #contact h2 {
+    color: #f5f5f5;
+}
